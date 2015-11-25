@@ -1,0 +1,36 @@
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-linuxbrew-on-a-linux-vps
+
+Step 1 - Clone LinuxBrew
+
+$ git clone https://github.com/Homebrew/linuxbrew.git ~/.linuxbrew
+
+Step 2 - Update environment variables
+
+
+Add the following lines to the end of the user's ~/.bashrc file:
+
+# Until LinuxBrew is fixed, the following is required.
+# See: https://github.com/Homebrew/linuxbrew/issues/47
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/local/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig:$PKG_CONFIG_PATH
+## Setup linux brew
+export LINUXBREWHOME=$HOME/.linuxbrew
+export PATH=$LINUXBREWHOME/bin:$PATH
+export MANPATH=$LINUXBREWHOME/man:$MANPATH
+export PKG_CONFIG_PATH=$LINUXBREWHOME/lib64/pkgconfig:$LINUXBREWHOME/lib/pkgconfig:$PKG_CONFIG_PATH
+export LD_LIBRARY_PATH=$LINUXBREWHOME/lib64:$LINUXBREWHOME/lib:$LD_LIBRARY_PATH
+NOTE: If you installed LinuxBrew to a different directory, change the path in LINUXBREWHOME above.
+
+
+Step 3 - Test installation
+
+$ which brew
+/home/ubuntu/.linuxbrew/bin/brew
+$ echo $PKG_CONFIG_PATH
+/home/ubuntu/.linuxbrew/lib64/pkgconfig:/home/ubuntu/.linuxbrew/lib/pkgconfig:/usr/local/lib/pkgconfig:/usr/local/lib64/pkgconfig:/usr/lib64/pkgconfig:/usr/lib/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig:/usr/lib64/pkgconfig:/usr/share/pkgconfig:
+Installing Packages with LinuxBrew
+Which packages are available?
+
+
+Step 4 - Reinstall pkg-config
+
+brew reinstall pkg-config
